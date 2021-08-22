@@ -1,0 +1,8 @@
+name = "anti-spam-bot"
+type = "webpack"
+account_id = "2dcc5a4f486a50625b4167e90d113158"
+workers_dev = true
+route = ""
+zone_id = ""
+
+kv_namespaces = [ { binding = "database", id = "338a3600642d4700b439ae01d64837e6", preview_id = "338a3600642d4700b439ae01d64837e6" }]

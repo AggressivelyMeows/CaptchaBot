@@ -1,0 +1,61 @@
+<html hidden>
+    <head>
+        <script type="module" src="https://cdn.skypack.dev/twind/shim"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .vimeo-wrapper {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                pointer-events: none;
+                overflow: hidden;
+            }
+            .vimeo-wrapper iframe {
+                width: 100vw;
+                height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+                min-height: 100vh;
+                min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        </style>
+    </head>
+    <body>
+        <!--
+        <div class="vimeo-wrapper">
+            <iframe src="https://player.vimeo.com/video/398910333?background=1&autoplay=1&loop=1&byline=0&title=0"
+                    frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+         </div>
+        -->
+        <div class="h-full w-full flex flex-col items-center justify-center bg-gray-100">
+            <div class="p-8 rounded-md border-2 border-yellow-500 flex flex-col items-center justify-center bg-gray-50 shadow-xl" style="max-width:400px;">
+                <img src="https://blog.cloudflare.com/content/images/2019/06/45DEDC7B-B31F-461C-B786-12FBAF1A5391.png" class="w-full mb-4 px-4"/>
+                <p class="text-center" id="text">
+                    Hi, {{username}}! Before you can join the Cloudflare Worker's Discord community, you need to confirm you are a human!
+                </p>
+                <form method="POST" class="mt-4 mb-0" id="form">
+                    <div class="h-captcha" data-sitekey="f44e1ee7-f8e8-42c3-944f-1b816bfdb6d2" data-callback="correctCaptcha"></div>
+                    <script src="https://hcaptcha.com/1/api.js" async defer></script>
+                </form>
+            </div>
+            <div class="mt-8 px-8 py-4 rounded-md border-2 border-yellow-500 flex flex-col items-center justify-center bg-gray-50 text-sm shadow-xl" style="max-width:400px;">
+                <p>
+                    Fun fact: This bot is built using Workers. Check out our source code for how you can protect your Discord server against spammers with the power of Workers.
+                </p>
+            </div>
+        </div>
+        <script>
+            function correctCaptcha() {
+                // send our data to the server
+                document.getElementById("form").submit();
+                document.getElementById('form').style.display = 'hidden'
+                document.getElementById('text').innerText = 'Please wait while we confirm you are a human, if you are still seeing this screen after a few seconds please return to the Discord app.'
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "name": "anti-spam-bot",
+  "version": "1.0.0",
+  "description": "A template for kick starting a Cloudflare Workers project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write '**/*.{js,css,json,md}'"
+  },
+  "author": "Cerulean <cerulean@sponsus.org>",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  },
+  "dependencies": {
+    "@glenstack/cf-workers-discord-bot": "^1.1.1",
+    "cfw-easy-utils": "^1.0.2",
+    "discord-slash-commands-client": "^1.2.1",
+    "hcaptcha": "0.0.2",
+    "itty-router": "^2.3.10",
+    "nanoid": "^3.1.23",
+    "raw-loader": "^4.0.2",
+    "sanitize-html": "^2.4.0"
+  }
+}
