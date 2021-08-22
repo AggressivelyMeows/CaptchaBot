@@ -131,7 +131,9 @@ router.post('/join/:token', async (req) => {
     var discordResponse = await fetch(`${config.discordBaseURL}/guilds/${record.guildID}/members/${record.userID}`, {
         method: 'PATCH',
         body: JSON.stringify({
-            roles: [] // Removes all roles a user has.
+            roles: [
+                config.roleID
+            ] // adds the verification role
         }),
         headers: {
             'Content-Type': 'application/json',
