@@ -5,8 +5,8 @@
   "description": "A template for kick starting a Cloudflare Workers project",
   "main": "worker.js",
   "scripts": {
-    "build": "esbuild index.js --bundle --minify --loader:.html=text --outfile=worker.js",
-    "debug": "esbuild index.js --bundle --loader:.html=text --outfile=worker.js",
+    "build": "esbuild index.js --bundle --inject:./buffer-shim.js --minify --loader:.html=text --outfile=worker.js",
+    "debug": "esbuild index.js --bundle --inject:./buffer-shim.js  --loader:.html=text --outfile=worker.js",
     "format": "prettier --write '**/*.{js,css,json,md}'"
   },
   "author": "Cerulean <cerulean@sponsus.org>",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@glenstack/cf-workers-discord-bot": "^1.1.1",
+    "buffer": "^6.0.3",
     "cfw-easy-utils": "^1.0.2",
     "discord-slash-commands-client": "^1.2.1",
     "itty-router": "^2.3.10",

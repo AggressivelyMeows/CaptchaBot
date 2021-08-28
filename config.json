@@ -1,7 +1,8 @@
 {
-  "roleID": "858203961617154128",
-  "appID": "858165987261808680",
+  "roleID": "880976057694580746",
+  "appID": "879089223813185597",
   "discordBaseURL": "https://discord.com/api/v9",
-  "workerBaseURL": "https://anti-spam.ceru.dev",
-  "publicKey": "5183b41bd191aea58892d56a2d272a535060407cf4464a9d6b11c961ea183a75"
+  "workerBaseURL": "https://verify.workers.community",
+  "publicKey": "43d53142ba7f422749441171777732c2c4dcd2f55ff43a98a76f5818ddf0e508",
+  "serverURL": "https://workers.community"
 }

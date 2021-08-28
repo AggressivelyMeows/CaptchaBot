@@ -32,7 +32,7 @@ const joinHandler = async (interaction) => {
 
 const slashCommandHandler = createSlashCommandHandler({
   applicationID: config.appID,
-  applicationSecret: process.env.APP_SECRET,
+  applicationSecret: APP_SECRET,
   publicKey: config.publicKey,
   commands: [[joinCommand, joinHandler]],
 });
@@ -47,7 +47,7 @@ router.get("/join/:token", async req => {
   let toReturn = (" " + confirmHtmlFile).slice(1);
   toReturn = toReturn.replace("{{username}}", sanitizeHtml(record.user.user.username));
   return response.html(toReturn);
-})
+});
 
 router.post("/join/:token", async req => {
   // Convert FormData into a plain object
@@ -60,30 +60,18 @@ router.post("/join/:token", async req => {
   if (!record) return response.json({success: false, error: "This token does not exist"});
   const resp = await fetch("https://hcaptcha.com/siteverify", {
     method: "POST",
-    body: new URLSearchParams({secret: process.env.HCAPTCHA_SECRET, "response": body["h-captcha-response"]}),
+    body: new URLSearchParams({secret: HCAPTCHA_SECRET, "response": body["h-captcha-response"]}),
 		headers: {"Content-Type": "application/x-www-form-urlencoded"}
   }).then(resp => resp.json());
-	// So hCap. failed to verify, we should have an error screen but for now this will do.
   if (!resp.success) return response.json({ success: false, error: "Validation failed, please try again..." });
-  // var roles = record.user.roles
-  // if (record.user.roles.includes(config.roleID)) {
-  //     roles = record.user.roles.filter(role => role !== config.roleID)
-  // } else {
-  //     roles.push(config.roleID)
-  // }
-  // Tell Discord to modify the roles of the user.
-  const discordResponse = await fetch(`${config.discordBaseURL}/guilds/${record.guildID}/members/${record.userID}`, {
-    method: "PATCH",
-    body: JSON.stringify({roles: [config.roleID]}), // adds the verification role
-    headers: {"Content-Type": "application/json", "Authorization": `Bot ${process.env.BOT_TOKEN}`}
-  }).then(resp => resp.json());
+  const discordResponse = await fetch(`${config.discordBaseURL}/guilds/${record.guildID}/members/${record.userID}/roles/${config.roleID}`, {method: "PUT",headers: {"Content-Type": "application/json", "Authorization": `Bot ${BOT_TOKEN}`}});
   await database.delete(token);
-  return Response.redirect("https://discord.gg/2ZmfQpEk2r");
+  return Response.redirect(config.serverURL);
 });
 
 // 404 for everything else
 router.all("*", () => {
-  return Response.redirect("https://discord.com/oauth2/authorize?client_id=858165987261808680&scope=applications.commands%20bot");
+  return Response.redirect(config.serverURL);
 });
 
 addEventListener("fetch", event => {
