@@ -1,8 +1,13 @@
 name = "anti-spam-bot"
-type = "webpack"
-account_id = "2dcc5a4f486a50625b4167e90d113158"
-workers_dev = true
-route = ""
-zone_id = ""
+type = "javascript"
+account_id = "864cdf76f8254fb5539425299984d766"
+workers_dev = false
+routes = ["https://verify.workers.community", "https://verify.workers.community/*"]
+zone_id = "c5de466b2a57eb411ca73273c83e0421"
 
-kv_namespaces = [ { binding = "database", id = "338a3600642d4700b439ae01d64837e6", preview_id = "338a3600642d4700b439ae01d64837e6" }]
+kv_namespaces = [ { binding = "database", id = "cded7f3e83a64c0db24c3cca2f7a14c1", preview_id = "cded7f3e83a64c0db24c3cca2f7a14c1" }]
+
+[build]
+command = "npm install && npm run build"
+[build.upload]
+format = "service-worker"

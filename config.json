@@ -1,0 +1,8 @@
+{
+  "roleID": "880976057694580746",
+  "appID": "879089223813185597",
+  "discordBaseURL": "https://discord.com/api/v9",
+  "workerBaseURL": "https://verify.workers.community",
+  "publicKey": "43d53142ba7f422749441171777732c2c4dcd2f55ff43a98a76f5818ddf0e508",
+  "serverURL": "https://workers.community"
+}
